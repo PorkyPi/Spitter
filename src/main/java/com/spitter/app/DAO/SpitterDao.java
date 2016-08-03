@@ -1,9 +1,9 @@
 package com.spitter.app.DAO;
 
-import com.spitter.app.entity.Spitter;
+import com.spitter.app.entity.*;
 
 public interface SpitterDao {
-	public void addSpitter(Spitter spitter);
-	public Spitter getSpitterById(long id);
-	public void saveSpitter(Spitter spitter);
+	public void addSpitter(Spittle spittle);
+	public Spittle getSpitterById(long id);
+	public void saveSpitter(Spittle spittle);
 }

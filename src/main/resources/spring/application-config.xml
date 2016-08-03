@@ -52,6 +52,7 @@
 	
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 	
+	
 	<tx:annotation-driven transaction-manager="transactionManager"/>    
 	<aop:aspectj-autoproxy />
 </beans>

@@ -5,7 +5,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import com.spitter.app.entity.Spitter;
+import com.spitter.app.entity.*;
 
 @Repository
 @Transactional
@@ -19,18 +19,18 @@ public class JpaSpitterDao implements SpitterDao {
 	private EntityManager em;
 	
 	@Override
-	public void addSpitter(Spitter spitter) {
-		em.persist(spitter);
+	public void addSpitter(Spittle spittle) {
+		em.persist(spittle);
 	}
 
 	@Override
-	public Spitter getSpitterById(long id) {
-		return em.find(Spitter.class, id);
+	public Spittle getSpitterById(long id) {
+		return em.find(Spittle.class, id);
 	}
 
 	@Override
-	public void saveSpitter(Spitter spitter) {
-		em.merge(spitter);
+	public void saveSpitter(Spittle spittle) {
+		em.merge(spittle);
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.spitter.app.entity;
 
-public class Spitter {
+public class Spittle {
 	private int spitterId;
 	private String username;
 	private String password;
