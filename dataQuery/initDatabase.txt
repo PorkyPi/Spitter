@@ -1,0 +1,17 @@
+CREATE TABLE spitter (
+	spitterId int NOT NULL GENERATED ALWAYS AS IDENTITY,
+	username varchar(40) NOT NULL,
+	password varchar(40) NOT NULL,
+	fullName varchar(150) NOT NULL,
+	email varchar(150) NOT NULL,
+	updateByEmail smallint NOT NULL,
+	PRIMARY KEY (spitterId)
+);
+
+CREATE TABLE spittle (
+	id int NOT NULL GENERATED ALWAYS AS IDENTITY,
+	spitter int NOT NULL,
+	text varchar(500),
+	when date NOT NULL,
+	PRIMARY KEY(id)
+);

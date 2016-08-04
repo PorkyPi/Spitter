@@ -18,40 +18,39 @@
 
 	<description>Example configuration to get you started.</description>
 
-	<context:component-scan base-package="com.spitter.app.DAO" />
+	<context:component-scan base-package="com.spitter.app.proc" />
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-		<property name="url" value="jdbc:derby:..//CM;create=true"/> 
+		<property name="url" value="jdbc:derby:C:\\Users\\админ\\workspace\\Spitter\\data;create=true"/> 
 	</bean>
 	
-	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
-	</bean>
-	
-	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-		<property name="database" value="DERBY" />
-		<property name="showSql" value="true" />
-		<property name="generateDdl" value="false" />
-		<property name="databasePlatform" value="org.hibernate.dialect.DerbyDialect" />
-	</bean>
-	
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="com.spitter.app.DAO"/>
-		<property name="hibernateProperties">
-			<props>
-			<prop key="dialect">org.hibernate.dialect.HSQLDialect</prop>
-			</props>
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="packagesToScan" value="com.bionic.edu.proc"/>
+		<property name="dataSource" ref="dataSource"/>
+		<property name="persistenceUnitName" value="CashM" />
+		<property name="jpaDialect"> 
+			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect"/> 
+		</property> 
+		<property name="jpaVendorAdapter"> 
+			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+				<property value="true" name="showSql"/> 
+				<property value="true" name="generateDdl"/>
+				<property name="databasePlatform" value="org.eclipse.persistence.platform.database.DerbyPlatform"/> 
+			</bean> 
+		</property>
+		<property name="jpaPropertyMap">
+			<map>
+				<entry key="eclipselink.weaving" value="false" />
+			</map>
 		</property>
 	</bean>
 	
-	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> 
+		<property name="entityManagerFactory" ref="entityManagerFactory"/> 
+	</bean>
 	
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
-	
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>    
 	<aop:aspectj-autoproxy />

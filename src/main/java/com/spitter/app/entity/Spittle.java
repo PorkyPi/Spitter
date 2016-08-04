@@ -1,49 +1,43 @@
 package com.spitter.app.entity;
 
+import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Spittle {
-	private int spitterId;
-	private String username;
-	private String password;
-	private String fullName;
-	private String email;
-	private boolean updateByEmail;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private Spitter spitter;
+	private String text;
+	private Date when;
 	
-	public int getSpitterId() {
-		return spitterId;
+	public Long getId() {
+		return id;
 	}
-	public void setSpitterId(int spitterId) {
-		this.spitterId = spitterId;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public String getUsername() {
-		return username;
+	public Spitter getSpitter() {
+		return spitter;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setSpitter(Spitter spitter) {
+		this.spitter = spitter;
 	}
-	public String getPassword() {
-		return password;
+	public String getText() {
+		return text;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setText(String text) {
+		this.text = text;
 	}
-	public String getFullName() {
-		return fullName;
+	public Date getWhen() {
+		return when;
 	}
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setWhen(Date when) {
+		this.when = when;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public boolean isUpdateByEmail() {
-		return updateByEmail;
-	}
-	public void setUpdateByEmail(boolean updateByEmail) {
-		this.updateByEmail = updateByEmail;
-	}
-	
-	
 }
